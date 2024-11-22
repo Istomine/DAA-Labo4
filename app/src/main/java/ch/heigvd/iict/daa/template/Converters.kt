@@ -4,15 +4,13 @@ import androidx.room.TypeConverter
 import java.util.*
 
 class Converters {
-    @TypeConverter
-    fun fromTimestamp(value: Long?): Calendar? {
-        return value?.let {
-            Calendar.getInstance().apply { timeInMillis = it }
-        }
-    }
 
     @TypeConverter
-    fun calendarToTimestamp(calendar: Calendar?): Long? {
-        return calendar?.timeInMillis
-    }
+    fun toCalendar(dateLong: Long) =
+        Calendar.getInstance().apply {
+            time = Date(dateLong)
+        }
+    @TypeConverter
+    fun fromCalendar(date: Calendar) =
+        date.time.time // Long
 }

@@ -14,6 +14,10 @@ interface NoteDao {
     @Query("SELECT COUNT(*) FROM note")
     fun countNotes(): LiveData<Int>
 
+    @Query("SELECT COUNT(*) FROM note")
+    fun countNotesLong(): Long
+
+
     // Insert note in the DB Return ID
     @Insert
     fun insert(note:Note): Long
@@ -30,7 +34,5 @@ interface NoteDao {
     @Insert
     fun insert(schedule: Schedule)
 
-    // Delete all schedule
-    @Delete
-    fun delete(schedule: Schedule)
+
 }
