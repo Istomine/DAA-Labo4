@@ -44,8 +44,7 @@ android:padding="8dp">
     android:layout_alignParentEnd="true"
     android:layout_centerVertical="true"
     android:textSize="14sp"
-    android:text="1 month"
-    android:textColor="@android:color/holo_red_dark" />
+    android:text="1 month" />
 
 <!-- Icône d'horloge (facultatif, lié au statut) -->
 <ImageView

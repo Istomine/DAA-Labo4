@@ -33,7 +33,7 @@ private fun updateSortedNotes() {
     val sorted = when (_sortOrder.value) {
         SortOrder.BY_CREATION_DATE -> notes.sortedBy { it.note.creationDate.time } // Utilisation de .time
         SortOrder.BY_SCHEDULE_DATE -> notes.sortedWith(
-            compareBy<NoteAndSchedule> { it.schedule?.date?.time ?: Long.MAX_VALUE } // Utilisation de .time
+            compareBy<NoteAndSchedule> { it.schedule?.date?.timeInMillis ?: Long.MAX_VALUE } // Utilisation de .time
         )
         null -> notes // Ajout d'un cas pour null
     }
