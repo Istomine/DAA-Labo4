@@ -1,6 +1,8 @@
 package ch.heigvd.iict.daa.template.viewModel
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import ch.heigvd.iict.daa.labo4.models.NoteAndSchedule
@@ -14,6 +16,45 @@ class ViewModelNote(private val repository: Repository) : ViewModel() {
     val countNote : LiveData<Int> = repository.countNotes()
 
 
+    private val _sortOrder = MutableLiveData(SortOrder.BY_CREATION_DATE)
+    val sortOrder: LiveData<SortOrder> = _sortOrder
+
+    private val _sortedNotes = MediatorLiveData<List<NoteAndSchedule>>()
+    val sortedNotes: LiveData<List<NoteAndSchedule>> = _sortedNotes
+
+    init {
+        _sortedNotes.addSource(allNote) { updateSortedNotes() }
+        _sortedNotes.addSource(sortOrder) { updateSortedNotes() }
+    }
+
+
+private fun updateSortedNotes() {
+    val notes = allNote.value ?: return
+    val sorted = when (_sortOrder.value) {
+        SortOrder.BY_CREATION_DATE -> notes.sortedBy { it.note.creationDate.time } // Utilisation de .time
+        SortOrder.BY_SCHEDULE_DATE -> notes.sortedWith(
+            compareBy<NoteAndSchedule> { it.schedule?.date?.time ?: Long.MAX_VALUE } // Utilisation de .time
+        )
+        null -> notes // Ajout d'un cas pour null
+    }
+    _sortedNotes.value = sorted
+}
+
+
+    fun setSortOrder(sortOrder: SortOrder) {
+        _sortOrder.value = sortOrder
+    }
+
+    // Méthode pour trier les notes par date de création
+    fun sortNotesByCreationDate() {
+        setSortOrder(SortOrder.BY_CREATION_DATE)
+    }
+
+    // Méthode pour trier les notes par ETA (Schedule Date)
+    fun sortNotesByETA() {
+        setSortOrder(SortOrder.BY_SCHEDULE_DATE)
+    }
+
     // Fonction pour supprimer toutes les notes.
     // Elle appelle une méthode correspondante dans le Repository.
     fun deleteNote() {
@@ -23,6 +64,10 @@ class ViewModelNote(private val repository: Repository) : ViewModel() {
     // Le Repository gère cette opération.
     fun generateNote() {
         repository.generateRandNote()
+    }
+
+    enum class SortOrder {
+        BY_CREATION_DATE, BY_SCHEDULE_DATE
     }
 }
 

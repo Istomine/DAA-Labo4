@@ -39,7 +39,6 @@ class FragmentControles : Fragment() {
         }
 
         buttonCreate.setOnClickListener {
-            // Generate a random note (implementation can be added here)
             myViewModel.generateNote()
         }
 
