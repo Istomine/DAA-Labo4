@@ -1,17 +1,15 @@
 package ch.heigvd.iict.daa.template
 
 import FragmentNotes
-import android.content.res.Configuration
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import ch.heigvd.iict.daa.template.fragments.FragmentControles
 import ch.heigvd.iict.daa.template.viewModel.MyViewModelFactory
 import ch.heigvd.iict.daa.template.viewModel.ViewModelNote
-import kotlin.math.log
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,29 +20,23 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val layoutName = if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
-            "res/layout/activity_main.xml"
-        } else {
-            "res/layout-land/activity_main.xml"
-        }
-        Log.d("MainActivity", "Layout chargé : $layoutName")
-
-        Log.d("MainActivity", "Orientation détectée : ${resources.configuration.orientation}")
 
         val fragmentManager = supportFragmentManager
 
-        if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
-            Log.d("MainActivity", "Mode portrait : ajout du fragment Notes")
-            fragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, FragmentNotes())
-                .commit()
-        } else {
-            Log.d("MainActivity", "Mode paysage : ajout des fragments Notes et Controles")
+        // Charger les fragments en fonction du layout sélectionné automatiquement
+        if (findViewById<View>(R.id.fragment_notes) != null) {
+            // Mode tablette
             fragmentManager.beginTransaction()
                 .replace(R.id.fragment_notes, FragmentNotes())
                 .replace(R.id.fragment_controles, FragmentControles())
                 .commit()
+        } else {
+            // Mode smartphone
+            fragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, FragmentNotes())
+                .commit()
         }
+
 
     }
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -54,9 +46,10 @@ class MainActivity : AppCompatActivity() {
 
     // Modifie dynamiquement les éléments du menu avant affichage (optionnel)
     override fun onPrepareOptionsMenu(menu: Menu): Boolean {
-        if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            menu.findItem(R.id.action_generate)?.isVisible = false // Masque "Generate"
-            menu.findItem(R.id.action_delete)?.isVisible = false // Masque "Delete All"
+
+        if (findViewById<View>(R.id.fragment_notes) != null) {
+            menu.findItem(R.id.action_generate)?.isVisible = false
+            menu.findItem(R.id.action_delete)?.isVisible = false
         }
         return super.onPrepareOptionsMenu(menu)
     }
