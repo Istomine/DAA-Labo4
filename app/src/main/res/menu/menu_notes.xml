@@ -6,6 +6,7 @@
         android:id="@+id/action_sort"
         android:title="Sort"
         android:icon="@drawable/sort"
+        android:iconTint="@color/black"
         app:showAsAction="always">
         <menu>
             <item
