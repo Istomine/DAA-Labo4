@@ -1,3 +1,10 @@
+/*
+Auteur :  Shyshmarov Alexandre / Guilherme Pinto
+Description : La classe MainActivity gère l'interface utilisateur principale en chargeant
+dynamiquement les fragments selon le mode tablette ou smartphone, et en permettant la gestion
+des notes via un menu interactif connecté à un ViewModel.
+ */
+
 package ch.heigvd.iict.daa.template
 
 import FragmentNotes

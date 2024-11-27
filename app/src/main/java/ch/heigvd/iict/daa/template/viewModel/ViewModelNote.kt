@@ -1,3 +1,10 @@
+/*
+Auteur :  Shyshmarov Alexandre / Guilherme Pinto
+Description : La classe ViewModelNote gère les données des notes en s'appuyant sur un Repository,
+offre des fonctionnalités de tri et de gestion des notes avec support pour LiveData, tandis
+que la MyViewModelFactory facilite la création personnalisée de cette classe.
+ */
+
 package ch.heigvd.iict.daa.template.viewModel
 
 import androidx.lifecycle.LiveData

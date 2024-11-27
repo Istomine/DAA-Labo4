@@ -1,4 +1,11 @@
-package ch.heigvd.iict.daa.template.adapters
+/*
+Auteur :  Shyshmarov Alexandre / Guilherme Pinto
+Description : La classe NoteAdapter est un adaptateur pour un RecyclerView qui affiche
+une liste de notes avec leurs détails et icônes associées, gère dynamiquement les mises
+à jour via DiffUtil, et adapte l'affichage en fonction des données des notes et des plannings.
+ */
+
+package ch.heigvd.iict.daa.template
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +15,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import ch.heigvd.iict.daa.labo4.models.NoteAndSchedule
-import ch.heigvd.iict.daa.template.R
 import java.util.Calendar
 import java.util.concurrent.TimeUnit
 

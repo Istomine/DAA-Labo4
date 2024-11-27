@@ -1,3 +1,10 @@
+/*
+Auteur :  Shyshmarov Alexandre / Guilherme Pinto
+Description : La classe MyApp étend Application pour fournir un cycle de vie global,
+instancier la base de données et le repository de manière paresseuse, tout en configurant
+un scope de coroutine pour les tâches en arrière-plan.
+ */
+
 package ch.heigvd.iict.daa.template
 
 import android.app.Application

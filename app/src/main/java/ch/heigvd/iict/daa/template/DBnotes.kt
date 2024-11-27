@@ -1,3 +1,9 @@
+/*
+Auteur :  Shyshmarov Alexandre / Guilherme Pinto
+Description : Ce code définit une base de données Room appelée DBnotes qui gère les entités Note
+et Schedule, avec des fonctionnalités de création, migration, et insertion automatique de données
+initiales.
+ */
 package ch.heigvd.iict.daa.template
 
 import android.content.Context
@@ -45,8 +51,11 @@ abstract class DBnotes : RoomDatabase() {
                 INSTANCE?.let {database ->
                     thread {
                         val isEmpty = database.NoteDao().countNotesLong() == 0L
+
                         if(isEmpty) {
-                            //TODO FONCtion pour populer la DB avec val random
+                            for (i in 1..10) {
+                                database.NoteDao().insert(Note.generateRandomNote());
+                            }
                         }
                     }
                 }

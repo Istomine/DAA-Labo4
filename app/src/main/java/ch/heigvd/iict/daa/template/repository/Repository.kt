@@ -1,3 +1,9 @@
+/*
+Auteur :  Shyshmarov Alexandre / Guilherme Pinto
+Description : La classe Repository centralise les interactions avec la base de données Room
+via NoteDao, en gérant les opérations de récupération, suppression, comptage, et génération
+de notes et plannings avec support des coroutines pour les tâches en arrière-plan.
+ */
 package ch.heigvd.iict.daa.template.repository
 
 import androidx.lifecycle.LiveData
@@ -6,7 +12,6 @@ import ch.heigvd.iict.daa.labo4.models.NoteAndSchedule
 import ch.heigvd.iict.daa.template.dao.NoteDao
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
-import kotlin.concurrent.thread
 
 class Repository(private val noteDao: NoteDao, private val applicationScope: CoroutineScope) {
 

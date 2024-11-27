@@ -1,3 +1,10 @@
+/*
+Auteur :  Shyshmarov Alexandre / Guilherme Pinto
+Description : La classe FragmentNotes est un fragment Android qui affiche une liste de
+notes triées dans un RecyclerView, observe et met à jour les données via un ViewModel,
+et propose des options de tri dans un menu.
+ */
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
@@ -10,7 +17,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ch.heigvd.iict.daa.template.R
-import ch.heigvd.iict.daa.template.adapters.NoteAdapter
+import ch.heigvd.iict.daa.template.NoteAdapter
 import ch.heigvd.iict.daa.template.viewModel.MyViewModelFactory
 import ch.heigvd.iict.daa.template.viewModel.ViewModelNote
 import ch.heigvd.iict.daa.template.MyApp

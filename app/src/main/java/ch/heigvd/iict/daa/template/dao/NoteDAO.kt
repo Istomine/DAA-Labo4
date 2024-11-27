@@ -1,12 +1,17 @@
-package ch.heigvd.iict.daa.template.dao
+/*
+Auteur :  Shyshmarov Alexandre / Guilherme Pinto
+Description : L'interface NoteDao fournit des méthodes pour compter, insérer, supprimer
+et récupérer des données depuis les tables note et schedule dans une base de données Room,
+avec support pour LiveData.
+ */
 
+package ch.heigvd.iict.daa.template.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import ch.heigvd.iict.daa.labo4.models.Note
 import ch.heigvd.iict.daa.labo4.models.NoteAndSchedule
 import ch.heigvd.iict.daa.labo4.models.Schedule
-
 
 @Dao
 interface NoteDao {

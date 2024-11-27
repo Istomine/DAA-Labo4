@@ -1,3 +1,10 @@
+/*
+Auteur :  Shyshmarov Alexandre / Guilherme Pinto
+Description : La classe FragmentControles est un fragment Android qui affiche le nombre de notes
+en temps réel, permet de créer ou supprimer des notes via un ViewModel partagé
+avec l'activité principale.
+ */
+
 package ch.heigvd.iict.daa.template.fragments
 
 import android.os.Bundle
